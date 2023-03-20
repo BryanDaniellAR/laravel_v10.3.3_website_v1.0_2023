@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Http extends Model
 {
     use HasFactory;
-    public const url = 'https://bryanarrivasplata.com/website_apirest/api/';
     
     public function get($enlace){
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => Http::url.$enlace,// your preferred link
+            CURLOPT_URL => env('APP_URL').$enlace,// your preferred link
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_TIMEOUT => 30000,
@@ -38,7 +37,7 @@ class Http extends Model
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => Http::url.$enlace,// your preferred url
+            CURLOPT_URL => env('APP_URL').$enlace,// your preferred url
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -67,7 +66,7 @@ class Http extends Model
     public function del($enlace){
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => Http::url.$enlace,// your preferred link
+            CURLOPT_URL => env('APP_URL').$enlace,// your preferred link
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_TIMEOUT => 30000,
@@ -92,7 +91,7 @@ class Http extends Model
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => Http::url.$enlace,// your preferred url
+            CURLOPT_URL => env('APP_URL').$enlace,// your preferred url
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
