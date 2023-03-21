@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Http;
 class HostController extends Controller
 {
-    public bool $readyToLoad = false;
     /**
      * Create a new controller instance.
      *
@@ -108,8 +107,5 @@ class HostController extends Controller
             $error = $respuesta->error;
             return redirect()->route('hosts.index')->with('error',$error);
         }
-    }
-    public function loadPosts(){
-        $this->readyToLoad = true;
     }
 }

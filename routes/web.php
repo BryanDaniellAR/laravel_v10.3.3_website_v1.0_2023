@@ -9,6 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserHostController;
 use App\Http\Controllers\UsabilityController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,4 @@ Route::resource('roles',RoleController::class);
 Route::resource('usabilities',UsabilityController::class);
 Route::resource('userhosts',UserHostController::class);
 Route::resource('users',UserController::class);
+Route::resource('images',ImageController::class);

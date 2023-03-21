@@ -63,6 +63,7 @@ class Http extends Model
             return (json_decode($response));
         }
     }
+    
     public function del($enlace){
         $curl = curl_init();
         curl_setopt_array($curl, array(
