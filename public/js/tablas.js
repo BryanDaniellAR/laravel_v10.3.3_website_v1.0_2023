@@ -2,7 +2,9 @@ var estilo = $('#example');
 var table;
 var table = estilo.DataTable({
     responsive:true,
-    autoWidth:false,
+    autoWidth:true,
+    deferRender:    true,
+    scroller:       true,
     "language":{
         url:'https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
     }

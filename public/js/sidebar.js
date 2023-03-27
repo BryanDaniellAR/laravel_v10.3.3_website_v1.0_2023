@@ -1,3 +1,4 @@
+$('.sidebar').toggle();
 $('.button-sidebar').on('click', function() {
   if($('.sidebar').is(':hidden')){
     $('.content').animate({

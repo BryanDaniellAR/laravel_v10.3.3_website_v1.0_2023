@@ -38,13 +38,20 @@ class ImageController extends Controller
     public function store(Request $request)
     {
         $http = new Http();
+        $extension = strtolower($request->file('image')->getClientOriginalExtension());
         $body = [
             'name' => $request->name,
+            'extension' => $extension,
         ];
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
-        $path = $request->file('image')->storeAs('public/assets/img/'.$request->name.'.png');
+        $extension = $request->file('image')->getClientOriginalExtension();
+        if($extension=='gif'){
+            $path = $request->file('image')->storeAs('public/assets/img/'.$request->name.'.gif');
+        }else{
+            $path = $request->file('image')->storeAs('public/assets/img/'.$request->name.'.png');
+        }
         $respuesta = $http -> post('images',$body);
         if($respuesta->res=='true'){
             $success = $respuesta->msg;
@@ -111,7 +118,13 @@ class ImageController extends Controller
         $http = new Http();
         $response = $http -> get('images/'.$id);
         if($response->res=='true'){
-            unlink(storage_path().'/app/public/assets/img/'.$response->data->name.'.png');
+            $rest = substr($response->data->url, -3);
+            if($rest=='gif'){
+                unlink(storage_path().'/app/public/assets/img/'.$response->data->name.'.gif');
+            }else{
+                unlink(storage_path().'/app/public/assets/img/'.$response->data->name.'.png');
+            }
+            
         }else{
             $error = $response->error;
             return redirect()->route('images.index')->with('error',$error);
